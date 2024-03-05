@@ -17,8 +17,8 @@ for fastq_file in *${file_extension}; do
         # Index the sorted BAM file
         samtools index ${sample_name}.sorted.bam
 
-        echo "Processed sample: ${sample_name}"
+        echo "Processed sample: ${sample_name}" >> $log_file
     else
-        echo "File not found: ${fastq_file}"
+        echo "File not found: ${fastq_file}" >> $log_file
     fi
 done
