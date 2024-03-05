@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Define input parameters
+reference_genome="reference_genome/TAIR10_chr_all-index"
+file_extension=".fastq"
+
+# Loop through all files with the specified extension
+for fastq_file in *${file_extension}; do
+    # Check if the file exists
+    if [ -e "$fastq_file" ]; then
+        # Extract sample name without extension
+        sample_name=$(basename "$fastq_file" $file_extension)
+
+        # Alignment and conversion to sorted BAM
+        bowtie2 -x $reference_genome -U $fastq_file | samtools view -bS | samtools sort -o ${sample_name}.sorted.bam -
+
+        # Index the sorted BAM file
+        samtools index ${sample_name}.sorted.bam
+
+        echo "Processed sample: ${sample_name}"
+    else
+        echo "File not found: ${fastq_file}"
+    fi
+done
