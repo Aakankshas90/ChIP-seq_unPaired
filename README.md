@@ -1,4 +1,4 @@
 # ChIP-seq data analysis
 
-This is a simple bash script to align unpaired ChIP-seq reads to the reference genome of an organism.
+Bash-based preprocessing workflow for unpaired ChIP-seq datasets including Bowtie2 alignment, BAM sorting, indexing, and duplicate marking.
 This script loops through multiple unpaired fastq files present in a directory and produces sorted and indexed bam files.
